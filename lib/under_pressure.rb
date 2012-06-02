@@ -1,6 +1,3 @@
-require "rubygems"
-require "bundler/setup"
-
 # external
 require 'popen4'
 
