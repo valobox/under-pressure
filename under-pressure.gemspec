@@ -1,17 +1,25 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/under-pressure/version', __FILE__)
+lib = File.expand_path('../lib/', __FILE__)
+$:.unshift lib unless $:.include?(lib)
+
+require 'under_pressure/version'
+require 'under_pressure'
 
 Gem::Specification.new do |gem|
+  gem.name          = "under-pressure"
+  gem.version       = UnderPressure::VERSION
+  gem.platform      = Gem::Platform::RUBY
   gem.authors       = ["Jamie Blair" "Oliver Brooks"]
   gem.email         = ["jamie@valobox.com"]
   gem.description   = "Compress png and jpg images"
   gem.summary       = ""
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/completelynovel/under-pressure"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "under-pressure"
-  gem.require_paths = ["lib"]
-  gem.version       = Under::Pressure::VERSION
+  gem.require_path  = "lib"
+  gem.files         = Dir.glob("{lib}/**/*") + %w(README.md)
+
+  gem.add_dependency "open4"
 end
