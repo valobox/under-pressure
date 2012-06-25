@@ -13,7 +13,7 @@ module UnderPressure
       out_file = File.dirname(out_file)
       cmd = "jpegoptim #{in_file} --max=100 -d #{out_file} -o 2>&1"
       `#{cmd}`
-      return $?.exitstatus < 1 ? true : false
+      $?.exitstatus < 1 ? true : false
     end
   end
 end
