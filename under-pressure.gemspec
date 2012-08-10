@@ -3,7 +3,6 @@ lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
 require 'under_pressure/version'
-require 'under_pressure'
 
 Gem::Specification.new do |gem|
   gem.name          = "under-pressure"
@@ -18,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.require_path  = "lib"
+  gem.require_paths = ["lib"]
   gem.files         = Dir.glob("{lib}/**/*") + %w(README.md)
 
   gem.add_dependency "open4"
