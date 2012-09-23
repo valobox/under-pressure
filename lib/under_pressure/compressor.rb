@@ -14,7 +14,7 @@ module UnderPressure
       
       out_path = in_path if out_path.nil?
 
-      supported_file_types = @@compressors.map{|compressor| compressor.file_types}.uniq.flatten
+      supported_file_types = @@compressors.map(&:file_types).uniq.flatten
 
       # First copy the file to the out path location
       # If a compressor can't compress this will be the fallback
@@ -25,18 +25,20 @@ module UnderPressure
         # Find a valid compressor
         @@compressors.each do |compressor|
           if compressor.file_types.include?(extname.downcase)
-            # Compress
-            puts "compressing #{in_path}"
             if compressor.compress(in_path, out_path)
-              # puts "compression complete"
+              log "compressing #{in_path} to #{out_path}"
             else
-              puts "!!!!!!!!!!! compression failed"
+              log "!!!!!!!!!!! compression of #{in_path} failed. Moving to #{out_path}"
             end
           end
         end
       else
-        puts "No compressor for #{extname} found"
+        log "No compressor for #{extname} found, moving #{in_path} to #{out_path}"
       end
+    end
+
+    def self.log(str = "")
+      puts str if ENV['LIB_VERBOSE'] == true
     end
   end
 end
