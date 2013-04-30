@@ -9,6 +9,10 @@ Uses:
 
 ## Installation
 
+Make sure the dependencies are installed on the system:
+
+    apt-get install pngcruch jpegoptim
+
 Add this line to your application's Gemfile:
 
     gem 'under-pressure'

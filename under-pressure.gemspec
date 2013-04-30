@@ -20,5 +20,5 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.files         = Dir.glob("{lib}/**/*") + %w(README.md)
 
-  gem.add_dependency "open4"
+  gem.add_dependency "POpen4" # Handle shelling out nicely
 end
